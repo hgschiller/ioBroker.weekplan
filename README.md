@@ -14,7 +14,7 @@
 
 ## weekplan adapter for ioBroker
 
-Wochenplan bzw Essensplan für eine Woche in Verbindung mit Chefkoch.de
+Wochenplan bzw. Essensplan für eine Woche in Verbindung mit Chefkoch.de
 
 ## Developer manual
 This section is intended for the developer. It can be deleted later
