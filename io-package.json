@@ -1,0 +1,79 @@
+{
+    "common": {
+        "name": "weekplan",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "WeekPlan",
+        "titleLang": {
+            "en": "WeekPlan",
+            "de": "WeekPlan",
+            "ru": "WeekPlan",
+            "pt": "WeekPlan",
+            "nl": "WeekPlan",
+            "fr": "WeekPlan",
+            "it": "WeekPlan",
+            "es": "WeekPlan",
+            "pl": "WeekPlan",
+            "zh-cn": "周计划"
+        },
+        "desc": {
+            "en": "Wochenplan bzw Essensplan für eine Woche in Verbindung mit Chefkoch.de",
+            "de": "Wochenplan für Essensplan für eine Woche in Verbindung mit Chefkoch.de",
+            "ru": "Wochenplan bzw Essensplan für eine Woche в Verbindung mit Chefkoch.de",
+            "pt": "Wochenplan bzw Essensplan für eine Woche em Verbindung mit Chefkoch.de",
+            "nl": "Wochenplan bzw Essensplan für eine Woche in Verbindung mit Chefkoch.de",
+            "fr": "Wochenplan bzw Essensplan für eine Woche in Verbindung mit Chefkoch.de",
+            "it": "Wochenplan bzw Essensplan für eine Woche in Verbindung mit Chefkoch.de",
+            "es": "Wochenplan bzw Essensplan für eine Woche en Verbindung mit Chefkoch.de",
+            "pl": "Wochenplan bzw Essensplan für eine Woche in Verbindung mit Chefkoch.de",
+            "zh-cn": "舍宾河畔的Wochenplan bzw Essensplanfüreine Woche"
+        },
+        "authors": [
+            "hgschiller <gregor.schiller@web.de>"
+        ],
+        "keywords": [
+            "Essensplan",
+            "Wochenplan",
+            "Chefkochplan",
+            "Essen"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "weekplan.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/hgschiller/ioBroker.weekplan/master/admin/weekplan.png",
+        "readme": "https://github.com/hgschiller/ioBroker.weekplan/blob/master/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "general",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "poll",
+        "materialize": true,
+        "dependencies": [
+            {
+                "js-controller": ">=2.0.0"
+            }
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
