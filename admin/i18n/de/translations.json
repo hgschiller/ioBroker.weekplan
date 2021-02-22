@@ -1,8 +1,9 @@
 {
-    "Einstellungen für Adapter Wochenplan": "Adaptereinstellungen für Wochenplan",
-    "Essensplan": "Essensplan",
-    "Wochenplan": "Wochenplan",
+    "Meal plan": "Essensplan",
+    "Meal plan in connection with Chefkoch.de": "Speiseplan in Verbindung mit Chefkoch.de",
+    "Settings for adapter weekplan": "Einstellungen für den Adapterwochenplan",
+    "Weekly schedule": "Wochenplan",
     "option1": "Option 1",
     "option2": "Option 2",
-    "weekplan adapter settings": "Adaptereinstellungen für weekplan"
+    "weekplan adapter settings": "Wochenplan-Adaptereinstellungen"
 }

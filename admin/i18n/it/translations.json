@@ -1,8 +1,9 @@
 {
-    "Einstellungen für Adapter Wochenplan": "Impostazioni dell'adattatore per weekplan",
-    "Essensplan": "Piano pasto",
-    "Wochenplan": "Weekplan",
+    "Meal plan": "Piano pasto",
+    "Meal plan in connection with Chefkoch.de": "Piano dei pasti in connessione con Chefkoch.de",
+    "Settings for adapter weekplan": "Impostazioni per l'adattatore weekplan",
+    "Weekly schedule": "Programma settimanale",
     "option1": "opzione 1",
     "option2": "opzione 2",
-    "weekplan adapter settings": "Impostazioni dell'adattatore per weekplan"
+    "weekplan adapter settings": "Impostazioni dell'adattatore weekplan"
 }

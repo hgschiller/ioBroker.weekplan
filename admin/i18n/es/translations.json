@@ -1,8 +1,9 @@
 {
-    "Einstellungen für Adapter Wochenplan": "Configuración del adaptador para plan de semana",
-    "Essensplan": "Régimen de comidas",
-    "Wochenplan": "Plan semanal",
+    "Meal plan": "Régimen de comidas",
+    "Meal plan in connection with Chefkoch.de": "Plan de comidas en relación con Chefkoch.de",
+    "Settings for adapter weekplan": "Configuración del plan semanal del adaptador",
+    "Weekly schedule": "Programación semanal",
     "option1": "Opción 1",
     "option2": "opcion 2",
-    "weekplan adapter settings": "Ajustes del adaptador para weekplan"
+    "weekplan adapter settings": "configuración del adaptador de plan de semana"
 }

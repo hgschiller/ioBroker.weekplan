@@ -30,16 +30,16 @@
             "zh-cn": "周计划"
         },
         "desc": {
-            "en": "Wochenplan bzw Essensplan für eine Woche in Verbindung mit Chefkoch.de",
-            "de": "Wochenplan für Essensplan für eine Woche in Verbindung mit Chefkoch.de",
-            "ru": "Wochenplan bzw Essensplan für eine Woche в Verbindung mit Chefkoch.de",
-            "pt": "Wochenplan bzw Essensplan für eine Woche em Verbindung mit Chefkoch.de",
-            "nl": "Wochenplan bzw Essensplan für eine Woche in Verbindung mit Chefkoch.de",
-            "fr": "Wochenplan bzw Essensplan für eine Woche in Verbindung mit Chefkoch.de",
-            "it": "Wochenplan bzw Essensplan für eine Woche in Verbindung mit Chefkoch.de",
-            "es": "Wochenplan bzw Essensplan für eine Woche en Verbindung mit Chefkoch.de",
-            "pl": "Wochenplan bzw Essensplan für eine Woche in Verbindung mit Chefkoch.de",
-            "zh-cn": "舍宾河畔的Wochenplan bzw Essensplanfüreine Woche"
+            "en": "Meal plan in connection with Chefkoch.de",
+            "de": "Speiseplan in Verbindung mit Chefkoch.de",
+            "ru": "План питания в связи с Chefkoch.de",
+            "pt": "Plano de refeições em conexão com Chefkoch.de",
+            "nl": "Maaltijdplan in verband met Chefkoch.de",
+            "fr": "Plan de repas en relation avec Chefkoch.de",
+            "it": "Piano dei pasti in connessione con Chefkoch.de",
+            "es": "Plan de comidas en relación con Chefkoch.de",
+            "pl": "Plan posiłków w połączeniu z Chefkoch.de",
+            "zh-cn": "與Chefkoch.de相關的用餐計劃"
         },
         "authors": [
             "hgschiller <gregor.schiller@web.de>"

@@ -1,8 +1,9 @@
 {
-    "Einstellungen für Adapter Wochenplan": "Настройки адаптера для недельного плана",
-    "Essensplan": "План Питания",
-    "Wochenplan": "План на неделю",
+    "Meal plan": "План Питания",
+    "Meal plan in connection with Chefkoch.de": "План питания в связи с Chefkoch.de",
+    "Settings for adapter weekplan": "Настройки для недельного плана адаптера",
+    "Weekly schedule": "Еженедельное расписание",
     "option1": "Опция 1",
     "option2": "option2",
-    "weekplan adapter settings": "Настройки адаптера для weekplan"
+    "weekplan adapter settings": "настройки адаптера недельного плана"
 }
