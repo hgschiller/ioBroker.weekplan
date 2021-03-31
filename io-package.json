@@ -59,7 +59,6 @@
         "readme": "https://github.com/hgschiller/ioBroker.weekplan/blob/master/README.md",
         "loglevel": "info",
 	    "mode": "daemon",
-//		"schedule": "6 * * * *",
         "type": "general",
         "compact": true,
         "connectionType": "local",
