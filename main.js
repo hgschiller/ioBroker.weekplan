@@ -117,14 +117,15 @@ async function main() {
 
     var Tag = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
     var Feld = ["ID","Name","Link","Zutaten","Zubereitung"];
-    var FeldArt = ["number","string","string","string","string"]
-    var FeldBeschreibung = [" is a unique number for the entry"," is the name of the court"," is the link to Chefkoch.de"," are the ingredients for the recipe"," is the preparation of the recipe"]
+    var FeldArt = ["number","string","string","string","string"];
+    var FeldRolle = ["indicator","value","value","value","value"];
+    var FeldBeschreibung = [" is a unique number for the entry"," is the name of the court"," is the link to Chefkoch.de"," are the ingredients for the recipe"," is the preparation of the recipe"];
 
     await adapter.setObjectNotExistsAsync('vis_switch', {
         type: 'state',
         common: {
             name: 'vis_switch',
-            type: 'state',
+            type: 'string',
             role: 'dayofweek',
             read: true,
             write: true,
@@ -138,8 +139,8 @@ async function main() {
             type: 'state',
             common: {
                 name: Feld[j] + " " + FeldBeschreibung[j],
-                type: 'state',
-                role: FeldArt[j],
+                type: FeldArt[j],
+                role: FeldRolle[j],
                 read: true,
                 write: true,
             } ,
@@ -153,8 +154,8 @@ async function main() {
                 type: 'state',
                 common: {
                     name: Feld[j] + " " + FeldBeschreibung[j],
-                    type: 'state',
-                    role: FeldArt[j],
+                    type: FeldArt[j],
+                    role: FeldRolle[j],
                     read: true,
                     write: true,
                 } ,
