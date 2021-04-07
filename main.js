@@ -115,6 +115,46 @@ async function main() {
         native: {},
     });
 
+    await adapter.setObjectNotExistsAsync('vis_switch', {
+        type: 'state',
+        common: {
+            name: 'vis_switch',
+            type: 'state',
+            role: 'dayofweek',
+            read: true,
+            write: true,
+        },
+        native: {},
+    });
+
+    await adapter.setObjectNotExistsAsync('AktTag.ID', {
+        type: 'state',
+        common: {
+            name: 'AktTag.ID',
+            type: 'state',
+            role: 'state',
+            read: true,
+            write: true,
+        },
+        native: {},
+    });
+
+//    var Tag = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
+//
+//
+//    createState("Essensplan.AktTag.ID", 0);          //Wird im Zusammenhang mit RezeptBuch benötigt
+//    createState("Essensplan.AktTag.Link", 0);
+//    createState("Essensplan.AktTag.Name", 0);
+//    createState("Essensplan.AktTag.Zubereitung", 0);
+//    createState("Essensplan.AktTag.Zutaten", 0,);
+//    for(var i = 0; i < Tag.length; i++){
+//        createState("Essensplan.Wochentag." + Tag[i] + ".ID", 0, {Tag: Tag[i]});          //Wird im Zusammenhang mit RezeptBuch benötigt
+//        createState("Essensplan.Wochentag." + Tag[i] + ".Link", 0, {Tag: Tag[i]});
+//        createState("Essensplan.Wochentag." + Tag[i] + ".Name", 0, {Tag: Tag[i]});
+//        createState("Essensplan.Wochentag." + Tag[i] + ".Zubereitung", 0,{Tag: Tag[i]});
+//        createState("Essensplan.Wochentag." + Tag[i] + ".Zutaten", 0,{Tag: Tag[i]});
+//    }
+
     // In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
     adapter.subscribeStates('testVariable');
     // You can also add a subscription for multiple states. The following line watches all states starting with "lights."
