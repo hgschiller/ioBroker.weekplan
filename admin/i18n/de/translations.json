@@ -1,9 +1,11 @@
 {
+    "Datapoint from the Echo System": "Datenpunkt aus dem Echo-System",
     "Meal plan": "Essensplan",
     "Meal plan in connection with Chefkoch.de": "Speiseplan in Verbindung mit Chefkoch.de",
+    "No idea": "Keine Ahnung",
     "Settings for adapter weekplan": "Einstellungen für den Adapterwochenplan",
     "Weekly schedule": "Wochenplan",
-    "option1": "Option 1",
-    "option2": "Option 2",
+    "option1": "",
+    "option2": "",
     "weekplan adapter settings": "Wochenplan-Adaptereinstellungen"
 }

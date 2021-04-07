@@ -58,7 +58,7 @@
         "extIcon": "https://raw.githubusercontent.com/hgschiller/ioBroker.weekplan/master/admin/weekplan.png",
         "readme": "https://github.com/hgschiller/ioBroker.weekplan/blob/master/README.md",
         "loglevel": "info",
-	    "mode": "daemon",
+        "mode": "daemon",
         "type": "general",
         "compact": true,
         "connectionType": "local",
