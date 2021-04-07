@@ -11,6 +11,8 @@ const utils = require('@iobroker/adapter-core');
 // Load your modules here, e.g.:
 // const fs = require("fs");
 
+var request = require("request");
+
 /**
  * The adapter instance
  * @type {ioBroker.Adapter}
