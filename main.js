@@ -115,6 +115,11 @@ async function main() {
         native: {},
     });
 
+    var Tag = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
+    var Feld = ["ID","Name","Link","Zutaten","Zubereitung"];
+    var FeldArt = ["number","string","string","string","string"]
+    var FeldBeschreibung = [" is a unique number for the entry"," is the name of the court"," is the link to Chefkoch.de"," are the ingredients for the recipe"," is the preparation of the recipe"]
+
     await adapter.setObjectNotExistsAsync('vis_switch', {
         type: 'state',
         common: {
@@ -127,33 +132,37 @@ async function main() {
         native: {},
     });
 
-    await adapter.setObjectNotExistsAsync('AktTag.ID', {
-        type: 'state',
-        common: {
-            name: 'AktTag.ID',
-            type: 'state',
-            role: 'state',
-            read: true,
-            write: true,
-        },
-        native: {},
-    });
 
-//    var Tag = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
-//
-//
-//    createState("Essensplan.AktTag.ID", 0);          //Wird im Zusammenhang mit RezeptBuch benötigt
-//    createState("Essensplan.AktTag.Link", 0);
-//    createState("Essensplan.AktTag.Name", 0);
-//    createState("Essensplan.AktTag.Zubereitung", 0);
-//    createState("Essensplan.AktTag.Zutaten", 0,);
-//    for(var i = 0; i < Tag.length; i++){
-//        createState("Essensplan.Wochentag." + Tag[i] + ".ID", 0, {Tag: Tag[i]});          //Wird im Zusammenhang mit RezeptBuch benötigt
-//        createState("Essensplan.Wochentag." + Tag[i] + ".Link", 0, {Tag: Tag[i]});
-//        createState("Essensplan.Wochentag." + Tag[i] + ".Name", 0, {Tag: Tag[i]});
-//        createState("Essensplan.Wochentag." + Tag[i] + ".Zubereitung", 0,{Tag: Tag[i]});
-//        createState("Essensplan.Wochentag." + Tag[i] + ".Zutaten", 0,{Tag: Tag[i]});
-//    }
+    for(var j = 0; j < 5; j++){
+        await adapter.setObjectNotExistsAsync('AktTag.'+Feld[j], {
+            type: 'state',
+            common: {
+                name: Feld[j] + " " + FeldBeschreibung[j],
+                type: 'state',
+                role: FeldArt[j],
+                read: true,
+                write: true,
+            } ,
+            native: {},
+        });
+    }
+
+    for(var i = 0; i < Tag.length; i++){
+        for(var j = 0; j < 5; j++){
+            await adapter.setObjectNotExistsAsync('Wochentag.'+Tag[i]+'.'+Feld[j], {
+                type: 'state',
+                common: {
+                    name: Feld[j] + " " + FeldBeschreibung[j],
+                    type: 'state',
+                    role: FeldArt[j],
+                    read: true,
+                    write: true,
+                } ,
+                native: {},
+            });
+        }
+    
+    }
 
     // In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
     adapter.subscribeStates('testVariable');
