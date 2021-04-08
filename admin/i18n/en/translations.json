@@ -5,12 +5,13 @@
     " is the name of the court": " is the name of the court",
     " is the preparation of the recipe": " is the preparation of the recipe",
     "Datapoint from the Echo System": "Datapoint from the Echo System",
+    "Maintain Alexa shopping list": "Maintain Alexa shopping list",
     "Meal plan": "Meal plan",
     "Meal plan in connection with Chefkoch.de": "Meal plan in connection with Chefkoch.de",
     "No idea": "No idea",
     "Settings for adapter weekplan": "Settings for adapter weekplan",
     "Weekly schedule": "Weekly schedule",
-    "option1": "",
-    "option2": "",
-    "weekplan adapter settings": "weekplan adapter settings"
+    "weekplan adapter settings": "weekplan adapter settings",
+    "with Alexa": "with Alexa",
+    "with Alexa voice output": "with Alexa voice output"
 }
