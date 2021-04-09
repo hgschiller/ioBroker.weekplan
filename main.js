@@ -95,10 +95,11 @@ async function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    adapter.log.info('config AInstance: ' + adapter.config.AInstance);
-    adapter.log.info('config ShoppingAlexa: ' + adapter.config.ShoppingAlexa);
-    adapter.log.info('config MAlexa: ' + adapter.config.MAlexa);
-    adapter.log.info('config OutputAlexa: ' + adapter.config.OutputAlexa);
+    adapter.log.info('config WithChefkoch: ' + adapter.config.WithChefkoch);
+    adapter.log.info('config WithShoppingList: ' + adapter.config.WithShoppingList);
+    adapter.log.info('config WithAlexa: ' + adapter.config.WithAlexa);
+    adapter.log.info('config WithSpeak: ' + adapter.config.WithSpeak);
+    adapter.log.info('config AlexaDevice: ' + adapter.config.AlexaDevice);
 
     /*
         For every state in the system there has to be also an object of type state

@@ -54,12 +54,70 @@
         "platform": "Javascript/Node.js",
         "main": "main.js",
         "icon": "weekplan.png",
+        "parameters": [
+            {
+                "name": "WithAlexa",
+                "type": "checkbox",
+                "title": "mit Anbindung an Alexa",
+                "def": true
+            },
+            {
+                "name": "WithShoppingList",
+                "type": "checkbox",
+                "title": "mit Nutzung der Alexa Einkausliste",
+                "def": true
+            },
+            {
+                "name": "WithSpeak",
+                "type": "checkbox",
+                "title": "mit Sprachausgabe über Alexa",
+                "def": true
+            },
+            {
+                "name": "WithChefkoch",
+                "type": "checkbox",
+                "title": "mit Nutzung von Chefkoch.de",
+                "def": true
+            },
+            {
+                "name": "AlexaDevice",
+                "type": "text",
+                "title": "Alexa Gerät für die Sprachausgabe und weitere Nutzung",
+                "def": "default",
+                "options": [
+                    {
+                        "text": "value1",
+                        "value": "1"
+                    }
+                ]
+            },
+            {
+                "name": "TestOption",
+                "type": "select",
+                "title": "eine Option zum Testen",
+                "def": "1",
+                "options": [
+                    {
+                        "text": "Test 1",
+                        "value": "1"
+                    },
+                    {
+                        "text": "Test 2",
+                        "value": "2"
+                    },
+                    {
+                        "text": "Test 3",
+                        "value": "3"
+                    }
+                ]
+            }
+        ],
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/hgschiller/ioBroker.weekplan/master/admin/weekplan.png",
         "readme": "https://github.com/hgschiller/ioBroker.weekplan/blob/master/README.md",
         "loglevel": "info",
         "mode": "daemon",
-        "type": "general",
+        "type": "health",
         "compact": true,
         "connectionType": "local",
         "dataSource": "poll",
@@ -71,8 +129,11 @@
         ]
     },
     "native": {
-        "option1": true,
-        "option2": "42"
+        "WithAlexa": true,
+        "WithShoppingList": true,
+        "WithSpeak": false,
+        "WithChefkoch": true,
+        "AlexaDevice": "alexa2.0.Echo-Devices.<ID of Echo Device>"
     },
     "objects": [],
     "instanceObjects": []
