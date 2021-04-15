@@ -18,15 +18,22 @@ var request = require("request");
  * @type {ioBroker.Adapter}
  */
 let adapter;
+const adapterName = require('./package.json').name.split('.').pop();
 
 /**
  * Starts the adapter instance
  * @param {Partial<utils.AdapterOptions>} [options]
  */
 function startAdapter(options) {
+/*    
+    options = options || {};
+    Object.assign(options, { name: adapterName });
+
+    adapter = new utils.Adapter(options);
+*/
     // Create the adapter and define its methods
     return adapter = utils.adapter(Object.assign({}, options, {
-        name: 'weekplan',
+        name: adapterName,
 
         // The ready callback is called when databases are connected and adapter received configuration.
         // start here!
@@ -118,18 +125,33 @@ async function main() {
         native: {},
     });
 
+/*  Meine Änderungen die zum Testen weg kommen.    
     var Tag = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
     var Feld = ["ID","Name","Link","Zutaten","Zubereitung"];
     var FeldArt = ["number","string","string","string","string"];
     var FeldRolle = ["indicator","value","value","value","value"];
     var FeldBeschreibung = [" is a unique number for the entry"," is the name of the court"," is the link to Chefkoch.de"," are the ingredients for the recipe"," is the preparation of the recipe"];
 
-    await adapter.setObjectNotExistsAsync('vis_switch', {
+    await adapter.setObjectNotExistsAsync('vis_day', {
         type: 'state',
         common: {
-            name: 'vis_switch',
+            name: 'vis_day',
+            desc: 'Wochentag der aktuell im Kanal AktDat bearbeitet wird.',
             type: 'string',
             role: 'dayofweek',
+            read: true,
+            write: true,
+        },
+        native: {},
+    });
+
+    await adapter.setObjectNotExistsAsync('plan_json', {
+        type: 'state',
+        common: {
+            name: 'plan_json',
+            desc: 'Meal plan for the current 14 days',
+            type: 'string',
+            role: 'value',
             read: true,
             write: true,
         },
@@ -167,7 +189,7 @@ async function main() {
         }
     
     }
-
+*/
     // In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
     adapter.subscribeStates('testVariable');
     // You can also add a subscription for multiple states. The following line watches all states starting with "lights."
