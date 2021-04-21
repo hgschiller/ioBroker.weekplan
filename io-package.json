@@ -166,7 +166,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Montag",
+            "_id": "Wochentag.1",
             "type": "channel",
             "common": {
                 "name": "Information for Monday"
@@ -174,7 +174,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Dienstag",
+            "_id": "Wochentag.2",
             "type": "channel",
             "common": {
                 "name": "Information for Tuesday"
@@ -182,7 +182,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Mittwoch",
+            "_id": "Wochentag.3",
             "type": "channel",
             "common": {
                 "name": "Information for Wednesday"
@@ -190,7 +190,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Donnerstag",
+            "_id": "Wochentag.4",
             "type": "channel",
             "common": {
                 "name": "Information for Thursday"
@@ -198,7 +198,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Freitag",
+            "_id": "Wochentag.5",
             "type": "channel",
             "common": {
                 "name": "Information for Friday"
@@ -206,7 +206,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Samstag",
+            "_id": "Wochentag.6",
             "type": "channel",
             "common": {
                 "name": "Information for Saturday"
@@ -214,7 +214,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Sonntag",
+            "_id": "Wochentag.0",
             "type": "channel",
             "common": {
                 "name": "Information for Sunday"
@@ -228,6 +228,19 @@
                 "name": "Recipe name",
                 "role": "indicator",
                 "type": "string",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "AktTag.Portionen",
+            "type": "state",
+            "common": {
+                "name": "Recipe Servings",
+                "role": "indicator",
+                "type": "number",
                 "read": true,
                 "write": true,
                 "def": ""
@@ -274,7 +287,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Montag.Name",
+            "_id": "Wochentag.1.Name",
             "type": "state",
             "common": {
                 "name": "Recipe name",
@@ -287,7 +300,20 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Montag.Link",
+            "_id": "Wochentag.1.Portionen",
+            "type": "state",
+            "common": {
+                "name": "Recipe Servings",
+                "role": "indicator",
+                "type": "number",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "Wochentag.1.Link",
             "type": "state",
             "common": {
                 "name": "Recipe Link",
@@ -300,7 +326,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Montag.Zutaten",
+            "_id": "Wochentag.1.Zutaten",
             "type": "state",
             "common": {
                 "name": "Recipe ingredients",
@@ -313,7 +339,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Montag.Zubereitung",
+            "_id": "Wochentag.1.Zubereitung",
             "type": "state",
             "common": {
                 "name": "Recipe preparation",
@@ -326,7 +352,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Dienstag.Name",
+            "_id": "Wochentag.2.Name",
             "type": "state",
             "common": {
                 "name": "Recipe name",
@@ -339,7 +365,20 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Dienstag.Link",
+            "_id": "Wochentag.2.Portionen",
+            "type": "state",
+            "common": {
+                "name": "Recipe Servings",
+                "role": "indicator",
+                "type": "number",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "Wochentag.2.Link",
             "type": "state",
             "common": {
                 "name": "Recipe Link",
@@ -352,7 +391,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Dienstag.Zutaten",
+            "_id": "Wochentag.2.Zutaten",
             "type": "state",
             "common": {
                 "name": "Recipe ingredients",
@@ -365,7 +404,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Dienstag.Zubereitung",
+            "_id": "Wochentag.2.Zubereitung",
             "type": "state",
             "common": {
                 "name": "Recipe preparation",
@@ -378,7 +417,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Mittwoch.Name",
+            "_id": "Wochentag.3.Name",
             "type": "state",
             "common": {
                 "name": "Recipe name",
@@ -391,7 +430,20 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Mittwoch.Link",
+            "_id": "Wochentag.3.Portionen",
+            "type": "state",
+            "common": {
+                "name": "Recipe Servings",
+                "role": "indicator",
+                "type": "number",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "Wochentag.3.Link",
             "type": "state",
             "common": {
                 "name": "Recipe Link",
@@ -404,7 +456,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Mittwoch.Zutaten",
+            "_id": "Wochentag.3.Zutaten",
             "type": "state",
             "common": {
                 "name": "Recipe ingredients",
@@ -417,7 +469,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Mittwoch.Zubereitung",
+            "_id": "Wochentag.3.Zubereitung",
             "type": "state",
             "common": {
                 "name": "Recipe preparation",
@@ -430,7 +482,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Donnerstag.Name",
+            "_id": "Wochentag.4.Name",
             "type": "state",
             "common": {
                 "name": "Recipe name",
@@ -443,7 +495,20 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Donnerstag.Link",
+            "_id": "Wochentag.4.Portionen",
+            "type": "state",
+            "common": {
+                "name": "Recipe Servings",
+                "role": "indicator",
+                "type": "number",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "Wochentag.4.Link",
             "type": "state",
             "common": {
                 "name": "Recipe Link",
@@ -456,7 +521,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Donnerstag.Zutaten",
+            "_id": "Wochentag.4.Zutaten",
             "type": "state",
             "common": {
                 "name": "Recipe ingredients",
@@ -469,7 +534,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Donnerstag.Zubereitung",
+            "_id": "Wochentag.4.Zubereitung",
             "type": "state",
             "common": {
                 "name": "Recipe preparation",
@@ -482,7 +547,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Freitag.Name",
+            "_id": "Wochentag.5.Name",
             "type": "state",
             "common": {
                 "name": "Recipe name",
@@ -495,7 +560,20 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Freitag.Link",
+            "_id": "Wochentag.5.Portionen",
+            "type": "state",
+            "common": {
+                "name": "Recipe Servings",
+                "role": "indicator",
+                "type": "number",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "Wochentag.5.Link",
             "type": "state",
             "common": {
                 "name": "Recipe Link",
@@ -508,7 +586,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Freitag.Zutaten",
+            "_id": "Wochentag.5.Zutaten",
             "type": "state",
             "common": {
                 "name": "Recipe ingredients",
@@ -521,7 +599,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Freitag.Zubereitung",
+            "_id": "Wochentag.5.Zubereitung",
             "type": "state",
             "common": {
                 "name": "Recipe preparation",
@@ -534,7 +612,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Samstag.Name",
+            "_id": "Wochentag.6.Name",
             "type": "state",
             "common": {
                 "name": "Recipe name",
@@ -547,7 +625,20 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Samstag.Link",
+            "_id": "Wochentag.6.Portionen",
+            "type": "state",
+            "common": {
+                "name": "Recipe Servings",
+                "role": "indicator",
+                "type": "number",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "Wochentag.6.Link",
             "type": "state",
             "common": {
                 "name": "Recipe Link",
@@ -560,7 +651,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Samstag.Zutaten",
+            "_id": "Wochentag.6.Zutaten",
             "type": "state",
             "common": {
                 "name": "Recipe ingredients",
@@ -573,7 +664,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Samstag.Zubereitung",
+            "_id": "Wochentag.6.Zubereitung",
             "type": "state",
             "common": {
                 "name": "Recipe preparation",
@@ -586,7 +677,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Sonntag.Name",
+            "_id": "Wochentag.0.Name",
             "type": "state",
             "common": {
                 "name": "Recipe name",
@@ -599,7 +690,20 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Sonntag.Link",
+            "_id": "Wochentag.0.Portionen",
+            "type": "state",
+            "common": {
+                "name": "Recipe Servings",
+                "role": "indicator",
+                "type": "number",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "Wochentag.0.Link",
             "type": "state",
             "common": {
                 "name": "Recipe Link",
@@ -612,7 +716,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Sonntag.Zutaten",
+            "_id": "Wochentag.0.Zutaten",
             "type": "state",
             "common": {
                 "name": "Recipe ingredients",
@@ -625,7 +729,7 @@
             "native": {}
         },
         {
-            "_id": "Wochentag.Sonntag.Zubereitung",
+            "_id": "Wochentag.0.Zubereitung",
             "type": "state",
             "common": {
                 "name": "Recipe preparation",
@@ -647,6 +751,15 @@
                 "desc": "Day of the week that is currently being processed in the AktDat channel.",
                 "read": true,
                 "write": true,
+                "states": {
+                    "0": "Sonntag",
+                    "1": "Montag",
+                    "2": "Dienstag",
+                    "3": "Mittwoch",
+                    "4": "Donnerstag",
+                    "5": "Freitag",
+                    "6": "Samstag"
+                },
                 "def": ""
             },
             "native": {}
