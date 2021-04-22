@@ -56,21 +56,103 @@ function startAdapter(options) {
 
         // If you need to react to object changes, uncomment the following method.
         // You also need to subscribe to the objects with `adapter.subscribeObjects`, similar to `adapter.subscribeStates`.
-        // objectChange: (id, obj) => {
-        //     if (obj) {
-        //         // The object was changed
-        //         adapter.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-        //     } else {
-        //         // The object was deleted
-        //         adapter.log.info(`object ${id} deleted`);
-        //     }
-        // },
+        objectChange: (id, obj) => {
+             if (obj) {
+                 // The object was changed
+                 adapter.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
+             } else {
+                 // The object was deleted
+                 adapter.log.info(`object ${id} deleted`);
+             }
+        },
 
         // is called if a subscribed state changes
         stateChange: (id, state) => {
             if (state) {
                 // The state was changed
                 adapter.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+                switch(id) {
+                    case adapter.namespace+".SwitchDay":
+                        adapter.log.debug(`SwitchDay state ${id} changed: ${state.val} (ack = ${state.ack})`);
+                        adapter.getState('Wochentag.'+state.val+'.Link', function (err, state) {
+                            if(err){
+                                adapter.log.error(err);
+                                return;
+                            }else{
+                                adapter.log.debug(
+                                    'State ' + adapter.namespace + '.Wochentag.X.Link -' +
+                                    '  Value: '    + state.val +
+                                    ', ack: '      + state.ack +
+                                    ', time stamp: '   + state.ts  +
+                                    ', last changed: ' + state.lc
+                                );
+                                adapter.setState('AktTag.Link',state.val);
+                            }
+                        });
+                        adapter.getState('Wochentag.'+state.val+'.Name', function (err, state) {
+                            if(err){
+                                adapter.log.error(err);
+                                return;
+                            }else{
+                                adapter.log.debug(
+                                    'State ' + adapter.namespace + '.Wochentag.X.Name -' +
+                                    '  Value: '    + state.val +
+                                    ', ack: '      + state.ack +
+                                    ', time stamp: '   + state.ts  +
+                                    ', last changed: ' + state.lc
+                                );
+                                adapter.setState('AktTag.Name',state.val);
+                            }
+                        });
+                        adapter.getState('Wochentag.'+state.val+'.Portionen', function (err, state) {
+                            if(err){
+                                adapter.log.error(err);
+                                return;
+                            }else{
+                                adapter.log.debug(
+                                    'State ' + adapter.namespace + '.Wochentag.X.Portionen -' +
+                                    '  Value: '    + state.val +
+                                    ', ack: '      + state.ack +
+                                    ', time stamp: '   + state.ts  +
+                                    ', last changed: ' + state.lc
+                                );
+                                adapter.setState('AktTag.Portionen',state.val);
+                            }
+                        });
+                        adapter.getState('Wochentag.'+state.val+'.Zubereitung', function (err, state) {
+                            if(err){
+                                adapter.log.error(err);
+                                return;
+                            }else{
+                                adapter.log.debug(
+                                    'State ' + adapter.namespace + '.Wochentag.X.Zubereitung -' +
+                                    '  Value: '    + state.val +
+                                    ', ack: '      + state.ack +
+                                    ', time stamp: '   + state.ts  +
+                                    ', last changed: ' + state.lc
+                                );
+                                adapter.setState('AktTag.Zubereitung',state.val);
+                            }
+                        });
+                        adapter.getState('Wochentag.'+state.val+'.Zutaten', function (err, state) {
+                            if(err){
+                                adapter.log.error(err);
+                                return;
+                            }else{
+                                adapter.log.debug(
+                                    'State ' + adapter.namespace + '.Wochentag.X.Zutaten -' +
+                                    '  Value: '    + state.val +
+                                    ', ack: '      + state.ack +
+                                    ', time stamp: '   + state.ts  +
+                                    ', last changed: ' + state.lc
+                                );
+                                adapter.setState('AktTag.Zutaten',state.val);
+                            }
+                        });
+
+                        break;
+                 }
+
             } else {
                 // The state was deleted
                 adapter.log.info(`state ${id} deleted`);
@@ -108,114 +190,36 @@ async function main() {
     adapter.log.info('config WithSpeak: ' + adapter.config.WithSpeak);
     adapter.log.info('config AlexaDevice: ' + adapter.config.AlexaDevice);
 
-    /*
-        For every state in the system there has to be also an object of type state
-        Here a simple template for a boolean variable named "testVariable"
-        Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-    */
-    await adapter.setObjectNotExistsAsync('testVariable', {
-        type: 'state',
-        common: {
-            name: 'testVariable',
-            type: 'boolean',
-            role: 'indicator',
-            read: true,
-            write: true,
-        },
-        native: {},
-    });
-
-/*  Meine Änderungen die zum Testen weg kommen.    
-    var Tag = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
-    var Feld = ["ID","Name","Link","Zutaten","Zubereitung"];
-    var FeldArt = ["number","string","string","string","string"];
-    var FeldRolle = ["indicator","value","value","value","value"];
-    var FeldBeschreibung = [" is a unique number for the entry"," is the name of the court"," is the link to Chefkoch.de"," are the ingredients for the recipe"," is the preparation of the recipe"];
-
-    await adapter.setObjectNotExistsAsync('vis_day', {
-        type: 'state',
-        common: {
-            name: 'vis_day',
-            desc: 'Wochentag der aktuell im Kanal AktDat bearbeitet wird.',
-            type: 'string',
-            role: 'dayofweek',
-            read: true,
-            write: true,
-        },
-        native: {},
-    });
-
-    await adapter.setObjectNotExistsAsync('plan_json', {
-        type: 'state',
-        common: {
-            name: 'plan_json',
-            desc: 'Meal plan for the current 14 days',
-            type: 'string',
-            role: 'value',
-            read: true,
-            write: true,
-        },
-        native: {},
-    });
-
-
-    for(var j = 0; j < 5; j++){
-        await adapter.setObjectNotExistsAsync('AktTag.'+Feld[j], {
-            type: 'state',
-            common: {
-                name: Feld[j] + " " + FeldBeschreibung[j],
-                type: FeldArt[j],
-                role: FeldRolle[j],
-                read: true,
-                write: true,
-            } ,
-            native: {},
-        });
-    }
-
-    for(var i = 0; i < Tag.length; i++){
-        for(var j = 0; j < 5; j++){
-            await adapter.setObjectNotExistsAsync('Wochentag.'+Tag[i]+'.'+Feld[j], {
-                type: 'state',
-                common: {
-                    name: Feld[j] + " " + FeldBeschreibung[j],
-                    type: FeldArt[j],
-                    role: FeldRolle[j],
-                    read: true,
-                    write: true,
-                } ,
-                native: {},
-            });
-        }
-    
-    }
-*/
+ 
     // In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
-    adapter.subscribeStates('testVariable');
+    //adapter.subscribeStates('testVariable');
     // You can also add a subscription for multiple states. The following line watches all states starting with "lights."
     // adapter.subscribeStates('lights.*');
     // Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
-    // adapter.subscribeStates('*');
-
-    /*
-        setState examples
-        you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-    */
+    //adapter.subscribeStates('*');
+    adapter.subscribeStates('AktTag.*');
+    adapter.subscribeStates('PlanSave');
+    adapter.subscribeStates('SwitchDay');
+    
+    //    setState examples
+    //    you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
+    
     // the variable testVariable is set to true as command (ack=false)
-    await adapter.setStateAsync('testVariable', true);
+    //await adapter.setStateAsync('testVariable', true);
+    await adapter.setStateAsync('SwitchDay', 1);
 
     // same thing, but the value is flagged "ack"
     // ack should be always set to true if the value is received from or acknowledged from the target system
-    await adapter.setStateAsync('testVariable', { val: true, ack: true });
+    //await adapter.setStateAsync('testVariable', { val: true, ack: true });
 
     // same thing, but the state is deleted after 30s (getState will return null afterwards)
-    await adapter.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
-
+    //await adapter.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
+    
     // examples for the checkPassword/checkGroup functions
     adapter.checkPassword('admin', 'iobroker', (res) => {
         adapter.log.info('check user admin pw iobroker: ' + res);
     });
-
+    
     adapter.checkGroup('admin', 'admin', (res) => {
         adapter.log.info('check group user admin group admin: ' + res);
     });

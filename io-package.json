@@ -777,6 +777,19 @@
                 "def": ""
             },
             "native": {}
+        },
+        {
+            "_id": "PlanSave",
+            "type": "state",
+            "common": {
+                "name": "Recipe save in the Day",
+                "role": "indicator",
+                "type": "boolean",
+                "read": true,
+                "write": true,
+                "def": false
+            },
+            "native": {}
         }
     ]
 }
