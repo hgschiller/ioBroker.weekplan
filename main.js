@@ -250,6 +250,12 @@ function startAdapter(options) {
                             adapter.setState('PlanSave', false);
                         }
                         break;
+                    case adapter.namespace + ".AktTag.Link":
+                        GetDataChefkoch();
+                        break;
+                    case adapter.namespace + ".AktTag.Portionen":
+                        GetDataChefkoch();
+                        break;
                 }
 
             } else {
@@ -275,6 +281,13 @@ function startAdapter(options) {
         //     }
         // },
     }));
+}
+
+function GetDataChefkoch() {
+    var Link = '';
+    var Portionen = 3;
+    adapter.log.debug(`GetDataChefkoch`);
+
 }
 
 async function main() {
