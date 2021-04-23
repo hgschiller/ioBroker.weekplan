@@ -1,5 +1,7 @@
 'use strict';
 
+let rueckgabe = '';
+
 /*
  * Created with @iobroker/create-adapter v1.31.0
  */
@@ -25,13 +27,14 @@ const adapterName = require('./package.json').name.split('.').pop();
  * @param {Partial<utils.AdapterOptions>} [options]
  */
 function startAdapter(options) {
-/*    
-    options = options || {};
-    Object.assign(options, { name: adapterName });
-
-    adapter = new utils.Adapter(options);
-*/
+    /*    
+        options = options || {};
+        Object.assign(options, { name: adapterName });
+    
+        adapter = new utils.Adapter(options);
+    */
     // Create the adapter and define its methods
+    // @ts-ignore
     return adapter = utils.adapter(Object.assign({}, options, {
         name: adapterName,
 
@@ -57,107 +60,203 @@ function startAdapter(options) {
         // If you need to react to object changes, uncomment the following method.
         // You also need to subscribe to the objects with `adapter.subscribeObjects`, similar to `adapter.subscribeStates`.
         objectChange: (id, obj) => {
-             if (obj) {
-                 // The object was changed
-                 adapter.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-             } else {
-                 // The object was deleted
-                 adapter.log.info(`object ${id} deleted`);
-             }
+            if (obj) {
+                // The object was changed
+                adapter.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
+            } else {
+                // The object was deleted
+                adapter.log.info(`object ${id} deleted`);
+            }
         },
 
         // is called if a subscribed state changes
         stateChange: (id, state) => {
             if (state) {
                 // The state was changed
-                adapter.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-                switch(id) {
-                    case adapter.namespace+".SwitchDay":
+                adapter.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+                switch (id) {
+                    case adapter.namespace + ".SwitchDay":
                         adapter.log.debug(`SwitchDay state ${id} changed: ${state.val} (ack = ${state.ack})`);
-                        adapter.getState('Wochentag.'+state.val+'.Link', function (err, state) {
-                            if(err){
+                        adapter.getState('Wochentag.' + state.val + '.Link', function (err, state) {
+                            if (err) {
                                 adapter.log.error(err);
                                 return;
-                            }else{
+                            } else {
                                 adapter.log.debug(
                                     'State ' + adapter.namespace + '.Wochentag.X.Link -' +
-                                    '  Value: '    + state.val +
-                                    ', ack: '      + state.ack +
-                                    ', time stamp: '   + state.ts  +
+                                    '  Value: ' + state.val +
+                                    ', ack: ' + state.ack +
+                                    ', time stamp: ' + state.ts +
                                     ', last changed: ' + state.lc
                                 );
-                                adapter.setState('AktTag.Link',state.val);
+                                adapter.setState('AktTag.Link', state.val);
                             }
                         });
-                        adapter.getState('Wochentag.'+state.val+'.Name', function (err, state) {
-                            if(err){
+                        adapter.getState('Wochentag.' + state.val + '.Name', function (err, state) {
+                            if (err) {
                                 adapter.log.error(err);
                                 return;
-                            }else{
+                            } else {
                                 adapter.log.debug(
                                     'State ' + adapter.namespace + '.Wochentag.X.Name -' +
-                                    '  Value: '    + state.val +
-                                    ', ack: '      + state.ack +
-                                    ', time stamp: '   + state.ts  +
+                                    '  Value: ' + state.val +
+                                    ', ack: ' + state.ack +
+                                    ', time stamp: ' + state.ts +
                                     ', last changed: ' + state.lc
                                 );
-                                adapter.setState('AktTag.Name',state.val);
+                                adapter.setState('AktTag.Name', state.val);
                             }
                         });
-                        adapter.getState('Wochentag.'+state.val+'.Portionen', function (err, state) {
-                            if(err){
+                        adapter.getState('Wochentag.' + state.val + '.Portionen', function (err, state) {
+                            if (err) {
                                 adapter.log.error(err);
                                 return;
-                            }else{
+                            } else {
                                 adapter.log.debug(
                                     'State ' + adapter.namespace + '.Wochentag.X.Portionen -' +
-                                    '  Value: '    + state.val +
-                                    ', ack: '      + state.ack +
-                                    ', time stamp: '   + state.ts  +
+                                    '  Value: ' + state.val +
+                                    ', ack: ' + state.ack +
+                                    ', time stamp: ' + state.ts +
                                     ', last changed: ' + state.lc
                                 );
-                                adapter.setState('AktTag.Portionen',state.val);
+                                adapter.setState('AktTag.Portionen', state.val);
                             }
                         });
-                        adapter.getState('Wochentag.'+state.val+'.Zubereitung', function (err, state) {
-                            if(err){
+                        adapter.getState('Wochentag.' + state.val + '.Zubereitung', function (err, state) {
+                            if (err) {
                                 adapter.log.error(err);
                                 return;
-                            }else{
+                            } else {
                                 adapter.log.debug(
                                     'State ' + adapter.namespace + '.Wochentag.X.Zubereitung -' +
-                                    '  Value: '    + state.val +
-                                    ', ack: '      + state.ack +
-                                    ', time stamp: '   + state.ts  +
+                                    '  Value: ' + state.val +
+                                    ', ack: ' + state.ack +
+                                    ', time stamp: ' + state.ts +
                                     ', last changed: ' + state.lc
                                 );
-                                adapter.setState('AktTag.Zubereitung',state.val);
+                                adapter.setState('AktTag.Zubereitung', state.val);
                             }
                         });
-                        adapter.getState('Wochentag.'+state.val+'.Zutaten', function (err, state) {
-                            if(err){
+                        adapter.getState('Wochentag.' + state.val + '.Zutaten', function (err, state) {
+                            if (err) {
                                 adapter.log.error(err);
                                 return;
-                            }else{
+                            } else {
                                 adapter.log.debug(
                                     'State ' + adapter.namespace + '.Wochentag.X.Zutaten -' +
-                                    '  Value: '    + state.val +
-                                    ', ack: '      + state.ack +
-                                    ', time stamp: '   + state.ts  +
+                                    '  Value: ' + state.val +
+                                    ', ack: ' + state.ack +
+                                    ', time stamp: ' + state.ts +
                                     ', last changed: ' + state.lc
                                 );
-                                adapter.setState('AktTag.Zutaten',state.val);
+                                adapter.setState('AktTag.Zutaten', state.val);
                             }
                         });
-
                         break;
-                 }
+                    case adapter.namespace + ".PlanSave":
+                        adapter.log.debug(`PlanSave state ${id} changed: ${state.val} (ack = ${state.ack})`);
+                        if (state.val) {
+                            adapter.getState('SwitchDay', function (err, state) {
+                                if (err) {
+                                    adapter.log.error(err);
+                                    return;
+                                } else {
+                                    adapter.log.debug(
+                                        'State ' + adapter.namespace + '.SwitchDay -' +
+                                        '  Value: ' + state.val +
+                                        ', ack: ' + state.ack +
+                                        ', time stamp: ' + state.ts +
+                                        ', last changed: ' + state.lc
+                                    );
+                                    rueckgabe = state.val
+                                }
+                            });
+                            // Die Daten aus AktDat in den entsprechenden Wochentag unter Wochentag speichern
+                            adapter.getState('AktTag.Link', function (err, state) {
+                                if (err) {
+                                    adapter.log.error(err);
+                                    return;
+                                } else {
+                                    adapter.log.debug(
+                                        'State ' + adapter.namespace + '.AktTag.Link -' +
+                                        '  Value: ' + state.val +
+                                        ', ack: ' + state.ack +
+                                        ', time stamp: ' + state.ts +
+                                        ', last changed: ' + state.lc
+                                    );
+                                    adapter.setState('Wochentag.' + rueckgabe + '.Link', state.val);
+                                }
+                            });
+                            adapter.getState('AktTag.Name', function (err, state) {
+                                if (err) {
+                                    adapter.log.error(err);
+                                    return;
+                                } else {
+                                    adapter.log.debug(
+                                        'State ' + adapter.namespace + '.AktTag.Name -' +
+                                        '  Value: ' + state.val +
+                                        ', ack: ' + state.ack +
+                                        ', time stamp: ' + state.ts +
+                                        ', last changed: ' + state.lc
+                                    );
+                                    adapter.setState('Wochentag.' + rueckgabe + '.Name', state.val);
+                                }
+                            });
+                            adapter.getState('AktTag.Portionen', function (err, state) {
+                                if (err) {
+                                    adapter.log.error(err);
+                                    return;
+                                } else {
+                                    adapter.log.debug(
+                                        'State ' + adapter.namespace + '.AktTag.Portionen -' +
+                                        '  Value: ' + state.val +
+                                        ', ack: ' + state.ack +
+                                        ', time stamp: ' + state.ts +
+                                        ', last changed: ' + state.lc
+                                    );
+                                    adapter.setState('Wochentag.' + rueckgabe + '.Portionen', state.val);
+                                }
+                            });
+                            adapter.getState('AktTag.Zubereitung', function (err, state) {
+                                if (err) {
+                                    adapter.log.error(err);
+                                    return;
+                                } else {
+                                    adapter.log.debug(
+                                        'State ' + adapter.namespace + '.AktTag.Zubereitung -' +
+                                        '  Value: ' + state.val +
+                                        ', ack: ' + state.ack +
+                                        ', time stamp: ' + state.ts +
+                                        ', last changed: ' + state.lc
+                                    );
+                                    adapter.setState('Wochentag.' + rueckgabe + '.Zubereitung', state.val);
+                                }
+                            });
+                            adapter.getState('AktTag.Zutaten', function (err, state) {
+                                if (err) {
+                                    adapter.log.error(err);
+                                    return;
+                                } else {
+                                    adapter.log.debug(
+                                        'State ' + adapter.namespace + '.AktTag.Zutaten -' +
+                                        '  Value: ' + state.val +
+                                        ', ack: ' + state.ack +
+                                        ', time stamp: ' + state.ts +
+                                        ', last changed: ' + state.lc
+                                    );
+                                    adapter.setState('Wochentag.' + rueckgabe + '.Zutaten', state.val);
+                                }
+                            });
+                            adapter.setState('PlanSave', false);
+                        }
+                        break;
+                }
 
             } else {
                 // The state was deleted
                 adapter.log.info(`state ${id} deleted`);
             }
-        },
+        }
 
         // If you need to accept messages in your adapter, uncomment the following block.
         // /**
@@ -184,13 +283,13 @@ async function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    adapter.log.info('config WithChefkoch: ' + adapter.config.WithChefkoch);
-    adapter.log.info('config WithShoppingList: ' + adapter.config.WithShoppingList);
-    adapter.log.info('config WithAlexa: ' + adapter.config.WithAlexa);
-    adapter.log.info('config WithSpeak: ' + adapter.config.WithSpeak);
-    adapter.log.info('config AlexaDevice: ' + adapter.config.AlexaDevice);
+    adapter.log.debug('config WithChefkoch: ' + adapter.config.WithChefkoch);
+    adapter.log.debug('config WithShoppingList: ' + adapter.config.WithShoppingList);
+    adapter.log.debug('config WithAlexa: ' + adapter.config.WithAlexa);
+    adapter.log.debug('config WithSpeak: ' + adapter.config.WithSpeak);
+    adapter.log.debug('config AlexaDevice: ' + adapter.config.AlexaDevice);
 
- 
+
     // In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
     //adapter.subscribeStates('testVariable');
     // You can also add a subscription for multiple states. The following line watches all states starting with "lights."
@@ -200,10 +299,10 @@ async function main() {
     adapter.subscribeStates('AktTag.*');
     adapter.subscribeStates('PlanSave');
     adapter.subscribeStates('SwitchDay');
-    
+
     //    setState examples
     //    you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-    
+
     // the variable testVariable is set to true as command (ack=false)
     //await adapter.setStateAsync('testVariable', true);
     await adapter.setStateAsync('SwitchDay', 1);
@@ -214,12 +313,12 @@ async function main() {
 
     // same thing, but the state is deleted after 30s (getState will return null afterwards)
     //await adapter.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
-    
+
     // examples for the checkPassword/checkGroup functions
     adapter.checkPassword('admin', 'iobroker', (res) => {
         adapter.log.info('check user admin pw iobroker: ' + res);
     });
-    
+
     adapter.checkGroup('admin', 'admin', (res) => {
         adapter.log.info('check group user admin group admin: ' + res);
     });
