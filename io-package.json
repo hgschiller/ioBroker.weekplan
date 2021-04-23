@@ -14,6 +14,18 @@
                 "es": "Versión inicial",
                 "pl": "Pierwsze wydanie",
                 "zh-cn": "首次出版"
+            },
+            "0.0.2": {
+                "en": "Usable object structure",
+                "de": "Verwendbare Objektstruktur",
+                "ru": "Полезная структура объекта",
+                "pt": "Estrutura de objeto utilizável",
+                "nl": "Bruikbare objectstructuur",
+                "fr": "Structure d'objet utilisable",
+                "it": "Struttura dell'oggetto utilizzabile",
+                "es": "Estructura de objeto utilizable",
+                "pl": "Struktura obiektu użytkowego",
+                "zh-cn": "可用的对象结构"
             }
         },
         "title": "WeekPlan",
