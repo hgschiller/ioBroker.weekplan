@@ -1,6 +1,8 @@
 'use strict';
 
 let rueckgabe = '';
+let Link = '';
+let Portionen = 3;
 
 /*
  * Created with @iobroker/create-adapter v1.31.0
@@ -251,10 +253,14 @@ function startAdapter(options) {
                         }
                         break;
                     case adapter.namespace + ".AktTag.Link":
-                        GetDataChefkoch();
+                        if (state.val != '') {
+                            GetDataChefkoch();
+                        }
                         break;
                     case adapter.namespace + ".AktTag.Portionen":
-                        GetDataChefkoch();
+                        if (state.val != '') {
+                            GetDataChefkoch();
+                        }
                         break;
                 }
 
@@ -284,11 +290,142 @@ function startAdapter(options) {
 }
 
 function GetDataChefkoch() {
-    var Link = '';
-    var Portionen = 3;
     adapter.log.debug(`GetDataChefkoch`);
+    adapter.getState('AktTag.Link', function (err, state) {
+        if (err) {
+            adapter.log.error(err);
+            return;
+        } else {
+            Link = state.val
+            adapter.log.debug('--->AktTag.Link (Link): '+Link);
+            adapter.getState('AktTag.Portionen', function (err, state) {
+                if (err) {
+                    adapter.log.error(err);
+                    return;
+                } else {
+                    Portionen = state.val
+                    if (Portionen === '' || Portionen == 0) {
+                        Portionen = 3;
+                        adapter.setState("AktTag.Portionen", Portionen);
+                    }
+                    adapter.log.debug('--->AktTag.Link und Portionen: '+Link+'   port: '+Portionen);
+                    leseWebseite();
+                    //adapter.setState('Wochentag.' + rueckgabe + '.Zutaten', state.val);
+                }
+            });
+            //adapter.setState('Wochentag.' + rueckgabe + '.Zutaten', state.val);
+        }
+    });
+
+    adapter.log.debug(`GetDataChefkoch Daten: `+Link+' --- '+Portionen);
+}
+
+function leseWebseite () {
+    adapter.log.debug('--->leseWebseite: '+Link+'   port: '+Portionen);    
+    try {
+        request(Link, function (error, response, body) {
+            if (!error && response.statusCode == 200) {              // kein Fehler, Inhalt in body
+                findeRezeptName(body);
+                findeZubereitung(body);
+                findeZutaten(body);
+            } else log(error,'error');                               // Error beim Einlesen
+        });
+    } catch (e) {
+        adapter.log.error('Fehler (try) leseWebseite: ' + e, 'error');
+    }
+}
+
+function findeZubereitung (body) {
+
+    //Beschreibung der Zubereitung finden und vom HTML code befreien
+    var index1 = body.indexOf('>Zubereitung</h2>');
+    var text1 = body.slice(index1);
+    var index2 = text1.indexOf('</div>');
+    text1 = text1.slice(0, index2);
+    text1 = text1.replace('<h2>Zubereitung</h2>', "");
+    text1 = text1.replace(/[ ]{2,}/g, "");
+    text1 = text1.replace(/\n/g, "");
+    text1 = text1.replace(/<br\/>/g, "");
+    text1 = text1.replace(/\t/g, "");
+    text1 = text1.replace(//g, "\n");
+    //text1 = text1.replace(/<br>/g, "\n");
+    text1 = text1.replace(/<div class="ds-box">/g,"|br|");
+    text1 = text1.replace(/<[^>]*>/g, "");
+    text1 = text1.replace(/\|br\|/g,"<br>");
+    //text1 = text1.replace(/\s\s*/g, " ");
+    text1 = text1.replace(/\n/g, "<br>");
+    try{text1 = text1.replace(/\"/g, "");} catch(err){}
+
+    adapter.log.info('AktTag.Zubereitung: ' + text1);
+    adapter.setState("AktTag.Zubereitung", text1);
 
 }
+
+function findeZutaten (body) {
+
+    //Zutaten liste vom HTML Code befreien
+    var index1 = body.indexOf('<table class="ingredients table-header"');
+    var text1 = body.slice(index1);
+//    var index2 = text1.indexOf('</table>');
+    var index2 = text1.indexOf('<div class="pi-cont">');
+
+    text1 = text1.slice(0, index2);
+    text1 = text1.replace(/<h3>/g, "---");
+    text1 = text1.replace(/<\/h3>/g, "!!!");
+    text1 = text1.replace(/<td.*>/g, " ");
+    text1 = text1.replace(/<tr>/g, " - ");
+    text1 = text1.replace(/\s<\/tr>/g, "; ");
+    text1 = text1.replace(/<a[^>]*>/, " ");
+    text1 = text1.replace(/<[^>]*>/g, "");
+    text1 = text1.replace(/\t/g, "");
+    text1 = text1.replace(/\n/g, "");
+    text1 = text1.replace(/;/g, "\n");
+    text1 = text1.replace(/\s\s;/g, "");
+    text1 = text1.replace(/ ;/g, ";");
+    text1 = text1.replace(/ /g, " ");
+    text1 = text1.replace(/\&nbsp;/g, " ");
+    text1 = text1.replace(/[ ]{2,}/g, " ");
+    text1 = text1.replace(/\n/g, "<br>");
+    text1 = text1.replace(/- ---/g, "<h4>");
+    text1 = text1.replace(/!!!/g, "</h4>");
+
+    //Anzahl der Portionen ermitteln
+    //var text2 = new RegExp(/<input aria-label="Anzahl der Portionen".*value="(.*)".*/);
+    var index1 = body.indexOf('<input aria-label="Anzahl der Portionen"');
+    var text2 = body.slice(index1);
+    var index2 = text2.indexOf('">');
+    text2 = text2.slice(0, index2);
+    //text2 = text2.exec(body);
+    text2 = text2.toString();
+    text2 = text2.replace(/.*value="/ , "");
+
+    var anzahlPortionen = text2;
+
+    adapter.log.info('AktTag.Zutaten: ' + text1);
+    adapter.setState("AktTag.Zutaten", text1);
+
+}
+
+function findeRezeptName (body) {
+
+    var text1 = new RegExp('<h1 class="">.*</h1>');
+    text1 = text1.exec(body);
+    text1 = text1.toString();
+    //text1 = text1.replace('<h1 class="page-title">', "");
+    text1 = text1.replace(/<[^>]*>/g, "");
+    try{text1 = text1.replace('</h1>', "");}catch(err){}
+    try{text1 = text1.replace(/&Auml;/g, "Ä");}catch(err){}
+    try{text1 = text1.replace(/&auml;/g, "ä");}catch(err){}
+    try{text1 = text1.replace(/&Ouml;/g, "Ö");}catch(err){}
+    try{text1 = text1.replace(/&ouml;/g, "ö");}catch(err){}
+    try{text1 = text1.replace(/&Uuml;/g, "Ü");}catch(err){}
+    try{text1 = text1.replace(/&uuml;/g, "ü");}catch(err){}
+    try{text1 = text1.replace(/&szlig;/g, "ß");}catch(err){}
+    try{text1 = text1.replace(/\'/g, "");}catch(err){}
+
+    adapter.setState("AktTag.Name", text1);
+}
+
 
 async function main() {
 
