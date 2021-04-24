@@ -328,7 +328,7 @@ function leseWebseite () {
                 findeRezeptName(body);
                 findeZubereitung(body);
                 findeZutaten(body);
-            } else log(error,'error');                               // Error beim Einlesen
+            } else adapter.log.error(error,'error');                               // Error beim Einlesen
         });
     } catch (e) {
         adapter.log.error('Fehler (try) leseWebseite: ' + e, 'error');
@@ -356,7 +356,7 @@ function findeZubereitung (body) {
     text1 = text1.replace(/\n/g, "<br>");
     try{text1 = text1.replace(/\"/g, "");} catch(err){}
 
-    adapter.log.info('AktTag.Zubereitung: ' + text1);
+    adapter.log.debug('AktTag.Zubereitung: ' + text1);
     adapter.setState("AktTag.Zubereitung", text1);
 
 }
@@ -401,7 +401,7 @@ function findeZutaten (body) {
 
     var anzahlPortionen = text2;
 
-    adapter.log.info('AktTag.Zutaten: ' + text1);
+    adapter.log.debug('AktTag.Zutaten: ' + text1);
     adapter.setState("AktTag.Zutaten", text1);
 
 }
