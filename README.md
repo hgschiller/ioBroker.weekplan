@@ -96,7 +96,7 @@ For later updates, the above procedure is not necessary. Just do the following:
 ## Changelog
 
 ### 0.0.3
-* (hgschiller) Automated data extract from Chefkoch.de
+* (hgschiller) Automated data extract from Chefkoch.de (test)
 ### 0.0.2
 * (hgschiller) Usable object structure
 ### 0.0.1
