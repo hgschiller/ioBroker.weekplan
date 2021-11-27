@@ -299,6 +299,19 @@
             "native": {}
         },
         {
+            "_id": "AktTag.ZutatenJson",
+            "type": "state",
+            "common": {
+                "name": "ZutatenJson",
+                "role": "state",
+                "type": "json",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
             "_id": "AktTag.Zubereitung",
             "type": "state",
             "common": {
@@ -766,6 +779,30 @@
             },
             "native": {}
         },
+        {
+            "_id": "AktDay",
+            "type": "state",
+            "common": {
+                "name": "Day to switch",
+                "role": "dayofweek",
+                "type": "string",
+                "desc": "Day of the week that is currently being processed in the AktDat channel.",
+                "read": true,
+                "write": true,
+                "states": {
+                    "0": "Sonntag",
+                    "1": "Montag",
+                    "2": "Dienstag",
+                    "3": "Mittwoch",
+                    "4": "Donnerstag",
+                    "5": "Freitag",
+                    "6": "Samstag"
+                },
+                "def": ""
+            },
+            "native": {}
+        },
+
         {
             "_id": "SwitchDay",
             "type": "state",
