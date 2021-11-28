@@ -64,7 +64,7 @@ function startAdapter(options) {
         objectChange: (id, obj) => {
             if (obj) {
                 // The object was changed
-                adapter.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
+                adapter.log.info(`--> object ${id} changed: ${JSON.stringify(obj)}`);
             } else {
                 // The object was deleted
                 adapter.log.info(`object ${id} deleted`);
@@ -76,7 +76,7 @@ function startAdapter(options) {
         stateChange: (id, state) => {
             if (state) {
                 // The state was changed
-                adapter.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+                adapter.log.debug(`Da hat sich was geändert ! state ${id} changed: ${state.val} (ack = ${state.ack})`);
                 switch (id) {
                     case `${adapter.namespace}.SwitchDay`:
                         adapter.log.debug(`SwitchDay state ${id} changed: ${state.val} (ack = ${state.ack})`);
@@ -86,7 +86,7 @@ function startAdapter(options) {
                                 return;
                             } else {
                                 adapter.log.debug(
-                                    'State ' + adapter.namespace + '.Wochentag.X.Link -' +
+                                    'SwitchDay -> State ' + adapter.namespace + '.Wochentag.X.Link -' +
                                     '  Value: ' + state.val +
                                     ', ack: ' + state.ack +
                                     ', time stamp: ' + state.ts +
@@ -165,7 +165,7 @@ function startAdapter(options) {
                                     return;
                                 } else {
                                     adapter.log.debug(
-                                        'State ' + adapter.namespace + '.SwitchDay -' +
+                                        'PlanSave -> State ' + adapter.namespace + '.SwitchDay -' +
                                         '  Value: ' + state.val +
                                         ', ack: ' + state.ack +
                                         ', time stamp: ' + state.ts +
@@ -455,6 +455,7 @@ async function main() {
     adapter.subscribeStates('AktTag.*');
     adapter.subscribeStates('PlanSave');
     adapter.subscribeStates('SwitchDay');
+    adapter.subscribeStates('Wochentag.*.Link');
 
     //    setState examples
     //    you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)

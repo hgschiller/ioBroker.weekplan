@@ -1,4 +1,9 @@
 .git
+.github
+.vscode
+.eslintrc.json
+.npmignore
+tsconfig*
 .idea
 *.code-workspace
 node_modules
