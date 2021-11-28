@@ -69,7 +69,8 @@ function startAdapter(options) {
                 // The object was deleted
                 adapter.log.info(`object ${id} deleted`);
             }
-        },
+        }, 
+        
 
         // is called if a subscribed state changes
         stateChange: (id, state) => {
