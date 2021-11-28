@@ -78,7 +78,7 @@ function startAdapter(options) {
                 // The state was changed
                 adapter.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
                 switch (id) {
-                    case adapter.namespace + ".SwitchDay":
+                    case `${adapter.namespace}.SwitchDay`:
                         adapter.log.debug(`SwitchDay state ${id} changed: ${state.val} (ack = ${state.ack})`);
                         adapter.getState('Wochentag.' + state.val + '.Link', function (err, state) {
                             if (err) {
@@ -334,10 +334,12 @@ function leseWebseite () {
     } catch (e) {
         adapter.log.error('Fehler (try) leseWebseite: ' + e, 'error');
     }
+    adapter.log.debug('Stop leseWebseite');
 }
 
 function findeZubereitung (body) {
 
+    adapter.log.debug('Start findeZubereitung');
     //Beschreibung der Zubereitung finden und vom HTML code befreien
     var index1 = body.indexOf('>Zubereitung</h2>');
     var text1 = body.slice(index1);
@@ -359,11 +361,12 @@ function findeZubereitung (body) {
 
     adapter.log.debug('AktTag.Zubereitung: ' + text1);
     adapter.setState("AktTag.Zubereitung", text1);
-
+    adapter.log.debug('Stop findeZubereitung');
 }
 
 function findeZutaten (body) {
 
+    adapter.log.debug('Start findeZutaten');
     //Zutaten liste vom HTML Code befreien
     var index1 = body.indexOf('<table class="ingredients table-header"');
     var text1 = body.slice(index1);
@@ -404,11 +407,12 @@ function findeZutaten (body) {
 
     adapter.log.debug('AktTag.Zutaten: ' + text1);
     adapter.setState("AktTag.Zutaten", text1);
-
+    adapter.log.debug('Stop findeZutaten');
 }
 
 function findeRezeptName (body) {
 
+    adapter.log.debug('Start findeRezeptName');
     var text1 = new RegExp('<h1 class="">.*</h1>');
     text1 = text1.exec(body);
     text1 = text1.toString();
@@ -425,6 +429,7 @@ function findeRezeptName (body) {
     try{text1 = text1.replace(/\'/g, "");}catch(err){}
 
     adapter.setState("AktTag.Name", text1);
+    adapter.log.debug('Stop findeRezeptName');
 }
 
 
