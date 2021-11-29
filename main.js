@@ -260,20 +260,26 @@ function startAdapter(options) {
                         break;
                     case adapter.namespace + ".AktTag.Link":
                         if (state.val != '') {
-                            let Ablage = "AktTag."
+                            Ablage = "AktTag."
                             GetDataChefkoch();
                         }
                         break;
                     case adapter.namespace + ".AktTag.Portionen":
                         if (state.val != '') {
-                            let Ablage = "AktTag."
+                            Ablage = "AktTag."
                             GetDataChefkoch();
                         }
                         break;
                     case adapter.namespace + ".Wochentag.0.Link":
+                    case adapter.namespace + ".Wochentag.1.Link":
+                    case adapter.namespace + ".Wochentag.2.Link":
+                    case adapter.namespace + ".Wochentag.3.Link":
+                    case adapter.namespace + ".Wochentag.4.Link":
+                    case adapter.namespace + ".Wochentag.5.Link":
+                    case adapter.namespace + ".Wochentag.6.Link":
                         if (state.val != '') {
-                            let Ablage = "Wochentag.0."
-                            adapter.log.debug("Wochentag hat sich der Link geändert! --> " + id);
+                            Ablage = "Wochentag."+id.substr(21, 1)+".";
+                            adapter.log.debug("Wochentag hat sich der Link geändert! --> " + id+ " / "+id.substr(21, 1));
                             GetDataChefkoch();
                         }
                         break;
@@ -306,7 +312,9 @@ function startAdapter(options) {
 
 function GetDataChefkoch() {
     adapter.log.debug(`GetDataChefkoch`);
-    adapter.getState(Ablage+'Link', function (err, state) {
+    adapter.log.debug(`GetDataChefkoch --> `+Ablage);
+    if (Ablage != "") {
+        adapter.getState(Ablage+'Link', function (err, state) {
         if (err) {
             adapter.log.error(err);
             return;
@@ -331,7 +339,7 @@ function GetDataChefkoch() {
             //adapter.setState('Wochentag.' + rueckgabe + '.Zutaten', state.val);
         }
     });
-
+    };
     adapter.log.debug(`GetDataChefkoch Daten: `+Link+' --- '+Portionen);
 }
 
