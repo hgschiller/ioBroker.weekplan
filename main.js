@@ -429,10 +429,10 @@ function findeZutaten (body) {
 
     adapter.log.debug('AktTag.Zutaten: ' + text1);
     zutaten = text1;
-    text1 = text1.replace(/- /g , "\[\{\"zutat\"\:\"");
+    text1 = text1.replace(/- /g , "\{\"zutat\"\:\"");
     text1 = text1.replace(/ <br> /g , "\"\},");
     text1 = text1.replace(/.$/ , "\]");
-    zutatenjson = text1;
+    zutatenjson = "\["+text1;
     adapter.log.debug('Zutaten: '+zutaten);
     adapter.log.debug('Zutaten Json: '+zutatenjson);
     adapter.setState(Ablage+"Zutaten", zutaten);
