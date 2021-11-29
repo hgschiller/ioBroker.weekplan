@@ -3,6 +3,11 @@
 let rueckgabe = '';
 let Link = '';
 let Portionen = 3;
+let mname = "";
+let zubereitung = "";
+let zutaten = "";
+let zutatenjson = "";
+let Ablage = "";
 
 /*
  * Created with @iobroker/create-adapter v1.31.0
@@ -255,15 +260,24 @@ function startAdapter(options) {
                         break;
                     case adapter.namespace + ".AktTag.Link":
                         if (state.val != '') {
+                            let Ablage = "AktTag."
                             GetDataChefkoch();
                         }
                         break;
                     case adapter.namespace + ".AktTag.Portionen":
                         if (state.val != '') {
+                            let Ablage = "AktTag."
                             GetDataChefkoch();
                         }
                         break;
-                }
+                    case adapter.namespace + ".Wochentag.0.Link":
+                        if (state.val != '') {
+                            let Ablage = "Wochentag.0."
+                            adapter.log.debug("Wochentag hat sich der Link geändert! --> " + id);
+                            GetDataChefkoch();
+                        }
+                        break;
+                    }
 
             } else {
                 // The state was deleted
@@ -292,14 +306,14 @@ function startAdapter(options) {
 
 function GetDataChefkoch() {
     adapter.log.debug(`GetDataChefkoch`);
-    adapter.getState('AktTag.Link', function (err, state) {
+    adapter.getState(Ablage+'Link', function (err, state) {
         if (err) {
             adapter.log.error(err);
             return;
         } else {
             Link = state.val
-            adapter.log.debug('--->AktTag.Link (Link): '+Link);
-            adapter.getState('AktTag.Portionen', function (err, state) {
+            adapter.log.debug('--->'+Ablage+'Link (Link): '+Link);
+            adapter.getState(Ablage+'Portionen', function (err, state) {
                 if (err) {
                     adapter.log.error(err);
                     return;
@@ -307,9 +321,9 @@ function GetDataChefkoch() {
                     Portionen = state.val
                     if (Portionen === '' || Portionen == 0) {
                         Portionen = 3;
-                        adapter.setState("AktTag.Portionen", Portionen);
+                        adapter.setState(Ablage+"Portionen", Portionen);
                     }
-                    adapter.log.debug('--->AktTag.Link und Portionen: '+Link+'   port: '+Portionen);
+                    adapter.log.debug('--->'+Ablage+'Link und Portionen: '+Link+'   port: '+Portionen);
                     leseWebseite();
                     //adapter.setState('Wochentag.' + rueckgabe + '.Zutaten', state.val);
                 }
@@ -359,8 +373,8 @@ function findeZubereitung (body) {
     text1 = text1.replace(/\n/g, "<br>");
     try{text1 = text1.replace(/\"/g, "");} catch(err){}
 
-    adapter.log.debug('AktTag.Zubereitung: ' + text1);
-    adapter.setState("AktTag.Zubereitung", text1);
+    adapter.log.debug(Ablage+'Zubereitung: ' + text1);
+    adapter.setState(Ablage+"Zubereitung", text1);
     adapter.log.debug('Stop findeZubereitung');
 }
 
@@ -406,7 +420,15 @@ function findeZutaten (body) {
     var anzahlPortionen = text2;
 
     adapter.log.debug('AktTag.Zutaten: ' + text1);
-    adapter.setState("AktTag.Zutaten", text1);
+    zutaten = text1;
+    text1 = text1.replace(/- /g , "\[\{\"zutat\"\:\"");
+    text1 = text1.replace(/ <br> /g , "\"\},");
+    text1 = text1.replace(/.$/ , "\]");
+    zutatenjson = text1;
+    adapter.log.debug('Zutaten: '+zutaten);
+    adapter.log.debug('Zutaten Json: '+zutatenjson);
+    adapter.setState(Ablage+"Zutaten", zutaten);
+    adapter.setState(Ablage+"ZutatenJson", zutatenjson);
     adapter.log.debug('Stop findeZutaten');
 }
 
@@ -428,7 +450,7 @@ function findeRezeptName (body) {
     try{text1 = text1.replace(/&szlig;/g, "ß");}catch(err){}
     try{text1 = text1.replace(/\'/g, "");}catch(err){}
 
-    adapter.setState("AktTag.Name", text1);
+    adapter.setState(Ablage+"Name", text1);
     adapter.log.debug('Stop findeRezeptName');
 }
 
