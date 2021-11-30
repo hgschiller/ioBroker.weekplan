@@ -83,6 +83,9 @@ function startAdapter(options) {
                 // The state was changed
                 adapter.log.debug(`Da hat sich was geändert ! state ${id} changed: ${state.val} (ack = ${state.ack})`);
                 switch (id) {
+                    // -----------------------------------------------------------------------------------------------------
+                    // Mit dem Feld SwitchDay wird der Tag der in SwitchDay eingetargen wird, in die Struktur AktTag kopiert
+                    // -----------------------------------------------------------------------------------------------------
                     case `${adapter.namespace}.SwitchDay`:
                         adapter.log.debug(`SwitchDay state ${id} changed: ${state.val} (ack = ${state.ack})`);
                         adapter.getState('Wochentag.' + state.val + '.Link', function (err, state) {
@@ -161,6 +164,9 @@ function startAdapter(options) {
                             }
                         });
                         break;
+                    // -----------------------------------------------------------------------------------------------------
+                    // Mit dem Feld SwitchDay wird der Tag der in SwitchDay eingetargen wird, in die Struktur AktTag kopiert
+                    // -----------------------------------------------------------------------------------------------------
                     case adapter.namespace + ".PlanSave":
                         adapter.log.debug(`PlanSave state ${id} changed: ${state.val} (ack = ${state.ack})`);
                         if (state.val) {
@@ -485,6 +491,7 @@ async function main() {
     adapter.subscribeStates('AktTag.*');
     adapter.subscribeStates('PlanSave');
     adapter.subscribeStates('SwitchDay');
+    adapter.subscribeStates('Save2List');
     adapter.subscribeStates('Wochentag.*.Link');
 
     //    setState examples

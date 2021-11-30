@@ -942,6 +942,19 @@
           "def": false
         },
         "native": {}
+      },
+      {
+        "_id": "Save2List",
+        "type": "state",
+        "common": {
+          "name": "Save List to Alexa Shoppinglist",
+          "role": "indicator",
+          "type": "boolean",
+          "read": true,
+          "write": true,
+          "def": false
+        },
+        "native": {}
       }
     ]
   }
