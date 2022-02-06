@@ -1,8 +1,20 @@
 {
     "common": {
       "name": "weekplan",
-      "version": "0.0.3",
+      "version": "0.0.4",
       "news": {
+        "0.0.4": {
+          "en": "Automated data extract from Chefkoch.de",
+          "de": "Automatisierte Daten Extrakt aus Chefkoch.de",
+          "ru": "Автоматическое извлечение данных из Chefkoch.de",
+          "pt": "Extração de dados automatizada de Chefkoch.de",
+          "nl": "Geautomatiseerd gegevensextract van Chefkoch.de",
+          "fr": "Extrait de données automatisé de Chefkoch.de",
+          "it": "Estrazione automatica dei dati da Chefkoch.de",
+          "es": "Extracción de datos automatizada de Chefkoch.de",
+          "pl": "Zautomatyzowany wyciąg danych z Chefkoch.de",
+          "zh-cn": "从Chefkoch.de自动提取数据"
+        },
         "0.0.3": {
           "en": "Automated data extract from Chefkoch.de",
           "de": "Automatisierte Daten Extrakt aus Chefkoch.de",

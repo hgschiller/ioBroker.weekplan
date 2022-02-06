@@ -95,6 +95,8 @@ For later updates, the above procedure is not necessary. Just do the following:
 
 ## Changelog
 
+### 0.0.4
+* (hgschiller) Weiterentwicklung    
 ### 0.0.3
 * (hgschiller) Automated data extract from Chefkoch.de (test)
 ### 0.0.2
