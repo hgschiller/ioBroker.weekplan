@@ -435,6 +435,7 @@ function findeZutaten (body) {
 
     adapter.log.debug('AktTag.Zutaten: ' + text1);
     zutaten = text1;
+    text1 = text1.replace(/<h4>.+?<\/h4> <br>/g , "");
     text1 = text1.replace(/- /g , "\{\"zutat\"\:\"");
     text1 = text1.replace(/ <br> /g , "\"\},");
     text1 = text1.replace(/.$/ , "\]");
